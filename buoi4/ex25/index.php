@@ -1,0 +1,12 @@
+<?php
+    require_once('header.php')
+?>
+<?php
+    require_once('slidebar.php')
+?>
+<?php
+    require_once('user.php')
+?>
+<?php
+    require_once('footer.php')
+?>
