@@ -1,53 +1,68 @@
 <?php
     session_start();
-    $product_in_cart = array();
-    if(isset($_SESSION['cart'])){
-        $product_in_cart = $_SESSION['cart'];
-    }
+    require_once('data_product.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Product List</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-
     <div class="container">
-    <h2>Giỏ hàng</h2>
-    <a href="index.php" class="btn btn-primary">Danh sách sản phẩm</a>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Mã sản phẩm</th>
-            <th>Tên sản phẩm</th>
-            <th>Số lượng</th>
-            <th>Giá bán</th>
-            <th>Thành tiền</th>
-            <th>Ảnh sản phẩm</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-            <?php 
-                foreach($product_in_cart as $key => $product){ ?>
-                    <tr>
-                        <td><?= $product['product_code'] ?></td>
-                        <td><?= $product['product_name'] ?></td>
-                        <td><?= $product['product_amount'] ?></td>
-                        <td><?= number_format($product['product_price'])?>đ</td>
-                        <td>Thành tiền</td>
-                        <td> <img width="100px" height="100px" src="<?= $product['product_images'] ?>" alt=""> </td>
-                        <td><a href="" class="btn btn-primary">Thêm vào giỏ hàng</a></td>
-                    </tr>
-            <?php } ?>      
-        </tbody>
-    </table>
+        <h2 class="text-center">Giỏ hàng</h2>
+        <a href="index.php" class="btn btn-primary">Danh sách sản phẩm</a>
+        <table class="table table-cart">
+            <thead>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá tiền</th>
+                <th>Số lượng</th>
+                <th>Hình ảnh</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="hidden" name="msp[]" value="<?= $product['id'] ?>">
+                        <?= $product['id'] ?>
+                    </td>
+                    <td><?= $product['name'] ?></td>
+                    <td>
+                        <input type="hidden" name="price[]" value="<?= $product['price'] ?>">
+                        <?= number_format($product['price']) ?>VND
+                    </td>
+                    <td>
+                        <div class="input-group input-group-quantity" style="width: 170px">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quantity[]" <?php if ($product['amount'] == 1) echo 'disabled' ?>>
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                            <input name="quantity[]" class="form-control input-number" min="1" max="9999" value="<?= $product['amount'] ?>" type="number" data-old-value="<?= $product['amount'] ?>">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity[]" <?php if ($product['amount'] == 9999) echo 'disabled' ?>>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+
+                    <td><img style="width: 80px;height: 80px;" src="<?= $product['image'] ?>"></td>
+                    <!-- <td>
+                        <a class="btn btn-danger" href="deleteCart.php?msp=<?= $row['msp'] ?>" title="">Delete</a>
+                    </td>            -->
+                </tr>
+            </tbody>
+        </table>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

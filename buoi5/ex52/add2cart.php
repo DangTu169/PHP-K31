@@ -1,14 +1,30 @@
 <?php
-    session_start();
-    $product = array();
-   if(isset($_SERVER['product'])){
-        $product = $_SESSION['$product'];
-   }
-   $key = $_GET['id'];
-   $product = $product[$key];
-   $product['product_amount'] = 1;
+require_once('data.php');
+session_start();
 
-   $_SESSION['cart'][] = $product;
-
-   header('location: cart.php');
-?>
+if (isset($_GET['id'])) {
+    $msp = $_GET['id'];
+    $checkProductInSession = false;
+    $productsInSession = isset($_SESSION['products']) ? $_SESSION['products'] : [];
+    foreach ($productsInSession as $key => $product) {
+        if ($product['id'] == $msp) {
+            if (isset($_GET['quantity'])) {
+                $_SESSION['products'][$key]['amount'] = $_GET['quantity'];
+            } else {
+                $_SESSION['products'][$key]['amount']++;
+            }
+            $checkProductInSession = true;
+            break;
+        }
+    }
+    if ($checkProductInSession === false) {
+        foreach ($products as $key => $product) {
+            if ($product['msp'] == $id) {
+                $products[$key]['amount'] = 1;
+                $_SESSION['products'][] = $products[$key];
+                break;
+            }
+        }
+    }
+}
+header('Location: cart.php');
