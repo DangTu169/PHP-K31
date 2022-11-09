@@ -1,7 +1,7 @@
 <?php
     require_once('connect.php');
     $id =(isset($_GET['id'])?$_GET['id']:0);
-    $sql =  "SELECT * from categories WHERE id = ". $id;
+    $sql =  "SELECT * from posts WHERE id = ". $id;
     $category = $conn -> query($sql)->fetch_assoc();
 ?>
 <!DOCTYPE html>
@@ -25,12 +25,32 @@
     <hr>
         <form action="category_edit_process.php?id=<?=$category['id']?>" method="POST" role="form" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" class="form-control" id="" placeholder="" name="name" value="<?=$category['category_name']?>">
+                <label for="">Title</label>
+                <input type="text" class="form-control" id="" placeholder="" name="title" value="<?=$category['title']?>">
             </div>
             <div class="form-group">
                 <label for="">Description</label>
-                <input type="text" class="form-control" id="" placeholder="" name="description" value="<?=$category['category_description']?>">
+                <input type="text" class="form-control" id="" placeholder="" name="description" value="<?=$category['description']?>">
+            </div>
+            <div class="form-group">
+                <label for="">Content</label>
+                <input type="text" class="form-control" id="" placeholder="" name="content" value="<?=$category['content']?>">
+            </div>
+            <div class="form-group">
+                <label for="">Slug</label>
+                <input type="text" class="form-control" id="" placeholder="" name="slug" value="<?=$category['slug']?>">
+            </div>
+            <div class="form-group">
+                <label for="">View Count</label>
+                <input type="text" class="form-control" id="" placeholder="" name="view_count" value="<?=$category['view_count']?>">
+            </div>
+            <div class="form-group">
+                <label for="">User ID</label>
+                <input type="text" class="form-control" id="" placeholder="" name="user_id" value="<?=$category['user_id']?>">
+            </div>
+            <div class="form-group">
+                <label for="">Category ID</label>
+                <input type="text" class="form-control" id="" placeholder="" name="category_id" value="<?=$category['category_id']?>">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
