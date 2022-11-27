@@ -1,6 +1,7 @@
 <?php
     class connection{
         var $conn;
+        
         function __construct(){
             $severname = "localhost";
             $username = "root";

@@ -17,18 +17,15 @@
     <div class="container">
     <h3 align="center">Add New Category</h3>
     <hr>
-        <form action="category_add_process.php" method="POST" role="form" enctype="multipart/form-data">
-            <div class="form-group">
+    <form action="index.php?mod=category&act=update" method="POST" role="form" enctype="multipart/form-data">
+    <input type="hidden" id="" placeholder="" name="id" value="<?= $category['id'] ?? ''?>">
+    <div class="form-group">
                 <label for="">Name</label>
-                <input type="text" class="form-control" id="" placeholder="" name="name">
-            </div>
-            <div class="form-group">
-                <label for="">Parent_id</label>
-                <input type="text" class="form-control" id="" placeholder="" name="parentId">
+                <input type="text" class="form-control" id="" placeholder="" name="category_name" value="<?= $category['category_name'] ?? ''?>">
             </div>
             <div class="form-group">
                 <label for="">Description</label>
-                <input type="text" class="form-control" id="" placeholder="" name="description">
+                <textarea name="category_description" id="" cols="50" rows="10" ><?= $category['category_description'] ?? '' ?></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>

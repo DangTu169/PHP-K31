@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <h4>Upload File</h4>
-        <form action="uploadFile.php" method="post" role="form">
+        <form action="uploadFile.php" method="post" role="form" enctype="form-data">
             <!-- <label for="">Tên tài liệu</label>
             <input type="text" name="name_file" id=""> <br> -->
             <label for="">Chọn file</label>

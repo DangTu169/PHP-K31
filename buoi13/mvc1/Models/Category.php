@@ -4,7 +4,7 @@
     class category{
         public $conn;
         function __construct(){
-            $connection = new connection();
+            $connection = new Connection();
             $this->conn = $connection->conn;
         }
 
@@ -12,7 +12,7 @@
             $query = 'SELECT * FROM `categories`';
 
             $result = $this->conn->query($query);
-            $categories = array();
+            $categories = [];
 
             while($row = $result->fetch_assoc()){
                 $categories[] = $row;
@@ -21,26 +21,27 @@
             return $categories;
         }
 
-        public function store(){
-            $data = $_POST;
-            $model = new category();
-            $status = $model->insert($data);
-            header('location: index.php?mod=category&act=index');
+        public function insert($data){
+            $query = 'INSERT INTO `categories`(`category_name`,`category_description`) VALUES ("' .$data['category_name'] . '","' . $data['category_description'] .'")';
+
+            return $this->conn->query($query);
         }
 
-        public function edit(){
-            
+        public function find($id){
+            $query = 'SELECT * FROM `categories` WHERE id = '.$id;
+            $result = $this->conn->query($query);
+            return $result->fetch_assoc();
         }
 
-        public function update(){
-            $model = new category();
-            $status = $model->update($data);
-            header('location: index.php?mod=category&act=index');
+        public function update($data){
+            $query = "UPDATE `categories` SET `category_name`='".$data['category_name'] ."',`category_description`='".$data['category_description'] ."' WHERE id = ".$data['id'];
+
+            return $this->conn->query($query);
         }
 
-        public function delete(){
-            $model = new category();
-            $status = $model->delete($data);
-            header('location: index.php?mod=category&act=index');
+        public function delete($id){
+            $query = 'DELETE FROM `categories` WHERE id = ' . $id;
+
+            return $this->conn->query($query);
         }
     }
