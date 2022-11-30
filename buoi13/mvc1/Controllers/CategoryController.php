@@ -60,6 +60,6 @@
             $id = isset($_GET['id'])?$_GET['id']:0;
             $category = $model->show($id);
             
-            require_once "./Views/categories/detail.php";  
+            require_once "./Views/categories/show.php";  
         }
     }

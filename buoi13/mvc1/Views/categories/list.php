@@ -134,7 +134,7 @@
                     <td><?= $cate['category_description']?></td>
                     <td><?= $cate['category_created_at']?></td>
                     <td>
-                        <a href="category_detail.php?id=<?=$cate['id']?>" class="btn btn-primary">Detail</a>
+                        <a href="index.php?mod=category&act=show&id=<?=$cate['id']?>" class="btn btn-primary">Detail</a>
                         <a href="index.php?mod=category&act=edit&id=<?=$cate['id']?>" class="btn btn-success">Edit</a>
                         <a href="index.php?mod=category&act=delete&id=<?=$cate['id']?>" class="btn btn-danger">Delete</a>
                     </td>

@@ -44,4 +44,11 @@
 
             return $this->conn->query($query);
         }
+
+        public function show($id){
+            $query = 'SELECT * FROM `categories` WHERE id = '.$id;
+            $result = $this->conn->query($query);
+            return $result->fetch_assoc();
+        }
+
     }

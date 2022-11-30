@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <h3 class="text-center">--- User ---</h3>
-        <a href="categories_add.php" class="btn btn-primary">Add New User</a>
+        <a href="index.php?mod=user&act=create" class="btn btn-primary">Add New User</a>
         <table class="table">
             <thead>
                 <th>ID</th>
@@ -31,8 +31,8 @@
                     <td><?= $user['email']?></td>
                     <td>
                         <a href="category_detail.php?id=<?=$cate['id']?>" class="btn btn-primary">Detail</a>
-                        <a href="category_edit.php?id=<?=$cate['id']?>" class="btn btn-success">Edit</a>
-                        <a href="category_delete.php?id=<?=$cate['id']?>" class="btn btn-danger">Delete</a>
+                        <a href="index.php?mod=user&act=edit&id=<?=$user['id']?>" class="btn btn-success">Edit</a>
+                        <a href="index.php?mod=user&act=delete&id=<?=$user['id']?>" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 <?php }?>
