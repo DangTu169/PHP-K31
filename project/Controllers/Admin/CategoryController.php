@@ -16,14 +16,15 @@
         }
 
         public function create(){
-            $this->view('categories/create.php');
+            $this->view('Admin/Categories/create.php');
+            // header('location: ./Views/Admin/Categories/create.php');
         }
 
         public function store(){
             $data = $_POST;
             $model = new Category();
             $status = $model->insert($data);
-            header('location: index.php?mod=category&act=index');
+            header('location: index.php?admin=admin&mod=category&act=index');
             // header('location: index.php?mod=category&act=index');
         }
 
@@ -33,14 +34,14 @@
             $data['category'] = $model->find($id);
             // var_dump($id,$category);
             // die();
-            $this->view('categories/update.php',  $data);
+            $this->view('Admin/Categories/edit.php', $data);
         }
 
         public function update(){
             $data = $_POST;
             $model = new Category();
             $status = $model->update($data);
-            header('location: index.php?mod=category&act=index');
+            header('location: index.php?admin=admin&mod=category&act=index');
         }
         
         public function delete(){
@@ -50,9 +51,9 @@
             // die();
             $status = $model->delete($id);
             if($status == true){
-                header('location: index.php?mod=category&act=index');
+                header('location: index.php?admin=admin&mod=category&act=index');
             }
-            header('location: index.php?mod=category&act=index');
+            header('location: index.php?admin=admin&mod=category&act=index');
         }
 
         public function show(){

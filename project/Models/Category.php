@@ -22,7 +22,7 @@
         }
 
         public function insert($data){
-            $query = 'INSERT INTO `categories`(`category_name`,`category_description`) VALUES ("' .$data['category_name'] . '","' . $data['category_description'] .'")';
+            $query = 'INSERT INTO `categories`(`category_name`,`category_thumbnail`,`category_description`) VALUES ("' .$data['category_name'] . '","' .$data['category_thumbnail'] . '","' . $data['category_description'] .'")';
 
             return $this->conn->query($query);
         }
@@ -34,7 +34,7 @@
         }
 
         public function update($data){
-            $query = "UPDATE `categories` SET `category_name`='".$data['category_name'] ."',`category_description`='".$data['category_description'] ."' WHERE id = ".$data['id'];
+            $query = "UPDATE `categories` SET `category_name`='".$data['category_name'] ."',`category_thumbnail`='".$data['category_thumbnail'] ."',`category_description`='".$data['category_description'] ."' WHERE id = ".$data['id'];
 
             return $this->conn->query($query);
         }
@@ -45,10 +45,10 @@
             return $this->conn->query($query);
         }
 
-        public function show($id){
-            $query = 'SELECT * FROM `categories` WHERE id = '.$id;
-            $result = $this->conn->query($query);
-            return $result->fetch_assoc();
-        }
+        // public function show($id){
+        //     $query = 'SELECT * FROM `categories` WHERE id = '.$id;
+        //     $result = $this->conn->query($query);
+        //     return $result->fetch_assoc();
+        // }
 
     }
